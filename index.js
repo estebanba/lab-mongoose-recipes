@@ -30,13 +30,20 @@ mongoose
       }).then((updated) => console.log("Success!" , updated ))
   .then(() => {
     Recipe.deleteOne( {title : "Carrot Cake"} )
-      .then((deleted) => console.log("Success deleting: ", deleted))      
-  })
-    
+      .then((deleted) => {
+        console.log("Success deleting: ", deleted)
+        mongoose.connection.close(() => {
+          console.log('Mongoose default connection disconnected through app termination');
+        });
+      })      
+    })
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
-  });
-
+  })
   
-    
+  // Promise.all([mongoose])
+  //   .then(() => {
+  //     console.log('Mongoose default connection disconnected through app termination');
+  //     mongoose.connection.close();
+  //   })
