@@ -17,9 +17,15 @@ mongoose
   })
   .then(() => {
     const applePie = { title: "ApplePie", cuisine: "American" }
-    Recipe.create( applePie )
-      .then(recipe => console.log('The recipe is saved and its value is: ', recipe))
-      .catch(recipe => console.log('An error happened while saving a new recipe:', recipe));
+    // Recipe.create( applePie )
+    //   .then(recipe => console.log('The recipe is saved and its value is: ', recipe))
+    //   .catch(recipe => console.log('An error happened while saving a new recipe:', recipe));
+
+      Recipe.insertMany( data )
+      .then(data.forEach(function({ title }) {
+        console.log('The recipe is saved and its value is: ', title)
+      }));
+      // .catch(recipe => console.log('An error happened while saving a new recipe:', recipe));
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
