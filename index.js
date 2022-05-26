@@ -28,7 +28,11 @@ mongoose
         return Recipe.findOneAndUpdate({title : "Rigatoni alla Genovese"}, {duration: 100}, {new: true})
         
       }).then((updated) => console.log("Success!" , updated ))
-      
+  .then(() => {
+    Recipe.deleteOne( {title : "Carrot Cake"} )
+      .then((deleted) => console.log("Success deleting: ", deleted))      
+  })
+    
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
