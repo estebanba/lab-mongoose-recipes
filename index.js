@@ -16,8 +16,14 @@ mongoose
     return Recipe.deleteMany()
   })
   .then(() => {
-    // Run your code here, after you have insured that the connection was made
+    const applePie = { title: "ApplePie", cuisine: "American" }
+    Recipe.create( applePie )
+      .then(recipe => console.log('The recipe is saved and its value is: ', recipe))
+      .catch(recipe => console.log('An error happened while saving a new recipe:', recipe));
   })
   .catch(error => {
     console.error('Error connecting to the database', error);
   });
+
+  
+
